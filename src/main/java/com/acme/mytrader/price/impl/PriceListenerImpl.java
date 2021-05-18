@@ -35,6 +35,9 @@ public class PriceListenerImpl implements PriceListener {
     }
 
     private boolean canBuy(String security, double price) {
-        return this.monitorStock.equalsIgnoreCase(security) && (price <= this.triggerLevel);
+        boolean canBuy = false;
+        if(monitorStock != null && security != null)
+            canBuy = this.monitorStock.equalsIgnoreCase(security) && (price <= this.triggerLevel);
+        return canBuy;
     }
 }
