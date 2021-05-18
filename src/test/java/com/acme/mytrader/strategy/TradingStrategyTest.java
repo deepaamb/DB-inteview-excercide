@@ -58,7 +58,22 @@ public class TradingStrategyTest {
     public void testAutoBuyForNoBuyWithNoMatchStock() {
         ExecutionService tradeExecutionService = Mockito.mock(ExecutionService.class);
         PriceSource priceSource = new PriceSourceImpl();
-        PriceListener priceListener = new PriceListenerImpl(tradeExecutionService,priceSource,10,100,"GOOG");
+        PriceListener priceListener = new PriceListenerImpl(tradeExecutionService,priceSource,0,100,"GOOG");
+        ArgumentCaptor<String> securityCaptor = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<Double> priceCaptor = ArgumentCaptor.forClass(Double.class);
+        ArgumentCaptor<Integer> volumeCaptor = ArgumentCaptor.forClass(Integer.class);
+        TradingStrategy tradingStrategy = new TradingStrategy(priceSource,priceListener);
+        List<StockPriceUpdate> input = Arrays.asList(new StockPriceUpdate.Builder("IBM").withPrice(10).build());
+        tradingStrategy.autoBuy(input);
+        verify(tradeExecutionService, never())
+                .buy(securityCaptor.capture(), priceCaptor.capture(), volumeCaptor.capture());
+    }
+
+    @Test
+    public void testAutoBuyForNoBuyWithNullMatchStock() {
+        ExecutionService tradeExecutionService = Mockito.mock(ExecutionService.class);
+        PriceSource priceSource = new PriceSourceImpl();
+        PriceListener priceListener = new PriceListenerImpl(tradeExecutionService,priceSource,10,100,null);
         ArgumentCaptor<String> securityCaptor = ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<Double> priceCaptor = ArgumentCaptor.forClass(Double.class);
         ArgumentCaptor<Integer> volumeCaptor = ArgumentCaptor.forClass(Integer.class);
