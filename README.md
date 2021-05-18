@@ -48,3 +48,19 @@ a specified price (e.g. 55.0). Don’t worry what units that is in.
 * Mockito
 * EasyMock
 * JMock
+
+### Interview Excercise Solution - Readme
+
+#### Structure 
+
+This is an implementation that depicts the Observer Design Pattern that monitors for a state change and triggers an event.
+
+The Listener monitors events from the Price Source. The Price Source is an async process and it required some additional state. Hence, the SourceImpl has some state variables.
+
+The Trading Strategy is the main program.
+
+The PriceSource and its implementation are async process that notifies events to the interested listeners. The rate and the security are random, but within a range. Hence, every run will have unique set of trade prices.
+
+The Price Listener monitors the events, strikes a trade when there is price matching a given critieria
+
+The TradeExceutionService prints the trade that is successful.
