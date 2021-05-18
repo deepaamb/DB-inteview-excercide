@@ -1,6 +1,5 @@
 package com.acme.mytrader.strategy;
 
-import com.acme.mytrader.execution.ExecutionService;
 import com.acme.mytrader.execution.impl.TradeExecutionService;
 import com.acme.mytrader.model.StockPriceUpdate;
 import com.acme.mytrader.price.PriceListener;
@@ -8,10 +7,8 @@ import com.acme.mytrader.price.PriceSource;
 import com.acme.mytrader.price.impl.PriceListenerImpl;
 import com.acme.mytrader.price.impl.PriceSourceImpl;
 
-import java.util.Arrays;
 import java.util.List;
 
-import static com.acme.mytrader.model.StockPriceUpdate.Builder;
 import static java.util.Arrays.asList;
 
 /**
